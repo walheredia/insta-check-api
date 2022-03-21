@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "typeRoots": ["./types"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
+
+/*
+harRoot
+insta2021
+mongodb+srv://harRoot:insta2021@cluster0.tqyao.mongodb.net/instacheck
+https://downloads.mongodb.com/compass/mongodb-compass-1.28.4-win32-x64.exe
+*/

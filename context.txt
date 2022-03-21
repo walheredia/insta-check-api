@@ -1,0 +1,20 @@
+npm i morgan => medir tiempos de solicitudes/respuestas
+npm install @types/morgan
+npm i dotenv => variables de entorno
+express validator && joi hapi (validation)
+
+rutas, puedo usar
+router.route('/routeSample')
+    .post(metodo)
+    .get(otroMetodo)
+
+deployar en heroku (desde shell de windows)
+    1-heroku login -i
+    2-colocar credenciales
+    3-git push heroku master
+Para setear la aplicación por defecto en caso de que no esté relacionada, hacer esto entre el paso 2 y 3 => heroku git:remote -a instacheck-api
+
+files en heroku
+heroku login
+heroku run bash -a instacheck-api
+$ cd app
