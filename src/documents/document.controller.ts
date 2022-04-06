@@ -3,15 +3,21 @@ import Document from './document';
 // import fs from 'fs-extra'; //No eliminar
 // import path from 'path'; //No eliminar
 import {create, deleteOne, getAll} from "./document.service";
+import {uploadS3} from "../aws/s3";
 
 export let createDocument = async(req: Request, res: Response) => {
     try {
         const { title, description, entity } = req.body;
+        const respS3 = await uploadS3(req.file);
         const newDoc = {
             entity: entity,
             title: title,
             description: description,
-            document: req.file?.path
+            document: req.file?.path,
+            awsEtag: respS3.ETag,
+            awsLocation: respS3.Location,
+            awsKey: respS3.Key,
+            awsBucket: respS3.Bucket
         };
         const document = await create(newDoc)
         return res.status(200).send({message: 'Document added successfully', data: document});

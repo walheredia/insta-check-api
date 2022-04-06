@@ -1,10 +1,11 @@
 import express, {Application, Request, Response} from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 import {json} from 'body-parser';
 import { routes } from './routes/routes';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
-dotenv.config();
+
 import cors from 'cors';
 import path from 'path';
 

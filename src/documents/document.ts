@@ -8,6 +8,10 @@ export interface iDocument extends mongoose.Document{
     description: string;
     document: string;
     disabled: boolean;
+    awsEtag: string;
+    awsLocation: string;
+    awsKey: string;
+    awsBucket: string
     createdAt: Date;
     updatedAt: Date;
 }
@@ -32,6 +36,21 @@ const DocumentSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    awsEtag: {
+        type: String,
+        required: true
+    },
+    awsLocation: {
+        type: String,
+        required: true
+    },
+    awsKey: {
+        type: String,
+        required: true
+    },
+    awsBucket: {
+       type: String
     },
     createdAt: {
         type: Date
