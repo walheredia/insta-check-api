@@ -3,7 +3,6 @@ import { get, update, logicalDelete} from "./user.service"
 
 export let getUsers = async(req: Request, res: Response) => {
     try {
-        console.log(req)
         let id = req.params.id ? req.params.id : undefined;
         const users = await get(id);
         return res.status(200).send(users);

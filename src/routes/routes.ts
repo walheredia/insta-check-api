@@ -2,6 +2,7 @@ import express, {Request, Response} from 'express';
 import { jwtValidation } from '../auth/verifyToken';
 import { createUser, logIn, profile } from '../auth/auth.controller';
 import { getUsers, updateUser, deleteUser } from '../users/user.controller';
+import { createEvent, getEvents, updateEvent, deleteEvent } from '../events/event.controller';
 import {createEntity, getEntities, updateEntity, deleteEntity, printQR, downloadFile} from '../entities/entity.controller';
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
 import multer from '../config/multer';
@@ -35,5 +36,11 @@ router.post('/document', multer.single('pdfFile'), createDocument);
 router.get('/uploads/:name', downloadDocument);
 router.get('/document/:entityId', getDocuments);
 router.delete('/document/:documentId', deleteDocument)
+
+/*Events*/
+router.post('/event', multer.single('pdfFile'), createEvent);
+router.put('/event', multer.single('pdfFile'), updateEvent);
+router.get('/event/:entityId', getEvents);
+router.delete('/event/:eventId', deleteEvent)
 
 export {router as routes}
