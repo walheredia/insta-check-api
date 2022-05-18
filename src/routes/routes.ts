@@ -33,9 +33,10 @@ router.delete('/user/:id', deleteUser); //logical user deletion
 
 /*Documents*/
 router.post('/document', multer.single('pdfFile'), createDocument);
-router.get('/uploads/:name', downloadDocument);
+//router.get('/uploads/:name', downloadDocument);
 router.get('/document/:entityId', getDocuments);
 router.delete('/document/:documentId', deleteDocument)
+router.get('/document/download/:documentId', downloadDocument)
 
 /*Events*/
 router.post('/event', multer.single('pdfFile'), createEvent);

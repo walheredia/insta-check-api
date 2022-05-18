@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import Document from './document';
+import Document, { iDocument } from './document';
 // import fs from 'fs-extra'; //No eliminar
 // import path from 'path'; //No eliminar
-import {create, deleteOne, getAll} from "./document.service";
-import {uploadS3} from "../aws/s3";
+import {create, deleteOne, getAll, getDocumentById} from "./document.service";
+import {getFileS3, uploadS3} from "../aws/s3";
 
 export let createDocument = async(req: Request, res: Response) => {
     try {
@@ -14,6 +14,7 @@ export let createDocument = async(req: Request, res: Response) => {
             title: title,
             description: description,
             document: req.file?.path,
+            mimeType: req.file?.mimetype,
             awsEtag: respS3.ETag,
             awsLocation: respS3.Location,
             awsKey: respS3.Key,
@@ -48,14 +49,17 @@ export const getDocuments = async (req: Request, res: Response): Promise<Respons
     }
 }
 
-export const downloadDocument = async (req: Request, res: Response): Promise<void> => {
-    const fileName = req.params?.name;
-    const directoryPath = "uploads/";
-    res.download(directoryPath + fileName, fileName, (err) => {
-        if (err) {
-        res.status(500).send({
-            message: "Could not download the file. " + err,
-        });
-        }
-    });
+export const downloadDocument = async (req: Request, res: Response): Promise<Response> => {
+  try{
+    const { documentId } = req.params;
+    const document:iDocument|null = await getDocumentById(documentId);
+    if(document){
+      const fileData: Buffer = await getFileS3(document.awsKey);
+      return res.status(200).type(document.mimeType).send(fileData);
+    } else {
+      return res.status(404).send('document not found');
+    }
+  } catch (error: any){
+    return res.status(500).send({error: error.message})
+  }
 }

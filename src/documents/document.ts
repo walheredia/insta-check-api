@@ -7,6 +7,7 @@ export interface iDocument extends mongoose.Document{
     title: string;
     description: string;
     document: string;
+    mimeType: string;
     disabled: boolean;
     awsEtag: string;
     awsLocation: string;
@@ -31,6 +32,9 @@ const DocumentSchema = new mongoose.Schema({
     },
     document: {
         type: String
+    },
+    mimeType: {
+      type: String
     },
     disabled: {
         type: Boolean,

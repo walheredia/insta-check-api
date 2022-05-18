@@ -12,3 +12,7 @@ export async function getAll(entityId:string): Promise<iDocument[]> {
 export async function deleteOne(id:string): Promise<any>{
     return Document.updateOne({_id: toObjectId(id)}, { $set: {disabled:true} });
 }
+
+export async function getDocumentById(documentId:string): Promise<iDocument | null> {
+  return Document.findOne({_id: toObjectId(documentId)});
+}
