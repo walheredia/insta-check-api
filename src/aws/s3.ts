@@ -24,6 +24,6 @@ export let uploadS3 = async (file:any) => {
 export const getFileS3 = async(path: string): Promise<Buffer> => {
   const response: S3.GetObjectOutput = await s3.getObject({ 
     Bucket: process.env.AWS_BUCKET_NAME || 'AWS_BUCKET_NAME_UNDEFINED', 
-    Key: '7a2dbe13-3e16-450f-9e53-472013712dfc.png'}).promise();
+    Key: path}).promise();
   return response.Body as Buffer;
 }
