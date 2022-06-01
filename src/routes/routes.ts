@@ -40,8 +40,8 @@ router.get('/document/download/:documentId', downloadDocument)
 
 /*Events*/
 router.post('/event', multer.single('pdfFile'), createEvent);
-router.put('/event', multer.single('pdfFile'), updateEvent);
+router.put('/event/:id', multer.single('pdfFile'), updateEvent);
 router.get('/event/:entityId', getEvents);
-router.delete('/event/:eventId', deleteEvent)
+router.delete('/event/:id', deleteEvent)
 
 export {router as routes}

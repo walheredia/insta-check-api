@@ -3,13 +3,12 @@ import { getAll, create, update, deleteOne} from "./event.service"
 
 export let createEvent = async(req: Request, res: Response) => {
     try {
-        const { title, description, entity, document, eventDate } = req.body;
+        const { title, description, entity, eventDate } = req.body;
         const newEvent = {
           eventDate: eventDate,
           entity: entity,
           title: title,
-          description: description,
-          document: document
+          description: description
         };
         const event = await create(newEvent)
         return res.status(200).send({message: 'Event added successfully', data: event});

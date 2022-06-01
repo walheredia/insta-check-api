@@ -1,6 +1,7 @@
 import { toObjectId } from "../utils/utils";
 import Entity, {iEntity} from "./entity";
 import {documentDB} from "../constants/entities.constants";
+import {eventDB} from "../constants/entities.constants";
 import {getPDF} from "../utils/printer.service";
 
 export async function create(entity: any){
@@ -20,6 +21,14 @@ export async function get(id?: string) {
                 localField: "_id",
                 foreignField: "entity",
                 as: "documents"
+            }
+        },
+        {
+            $lookup: {
+                from: eventDB,
+                localField: "_id",
+                foreignField: "entity",
+                as: "events"
             }
         }
     ]);

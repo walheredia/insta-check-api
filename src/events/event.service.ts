@@ -9,7 +9,7 @@ export async function update(event:any, id:string){
         {
             title: event.title,
             description: event.description,
-            document: event.document
+            eventDate: event.eventDate
         }
     });
 }
