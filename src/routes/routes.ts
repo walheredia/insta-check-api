@@ -6,6 +6,7 @@ import { createEvent, getEvents, updateEvent, deleteEvent } from '../events/even
 import {createEntity, getEntities, updateEntity, deleteEntity, printQR, downloadFile} from '../entities/entity.controller';
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
 import multer from '../config/multer';
+import { createBusiness, deleteBusiness, getBusiness, updateBusiness } from '../business/business.controller';
 
 
 const router = express.Router();
@@ -43,5 +44,11 @@ router.post('/event', multer.single('pdfFile'), createEvent);
 router.put('/event/:id', multer.single('pdfFile'), updateEvent);
 router.get('/event/:entityId', getEvents);
 router.delete('/event/:id', deleteEvent)
+
+/*Business*/
+router.post('/business', createBusiness); //adding a business
+router.get('/business', getBusiness); //return all business
+router.put('/business/:id', updateBusiness); //update a business
+router.delete('/business/:id', deleteBusiness); //delete a business
 
 export {router as routes}

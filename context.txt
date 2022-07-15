@@ -11,7 +11,7 @@ router.route('/routeSample')
 deployar en heroku (desde shell de windows)
     1-heroku login -i
     2-colocar credenciales
-    3-git push heroku master
+    3-git push heroku main
 Para setear la aplicación por defecto en caso de que no esté relacionada, hacer esto entre el paso 2 y 3 => heroku git:remote -a instacheck-api
 
 files en heroku
