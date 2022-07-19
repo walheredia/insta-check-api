@@ -48,6 +48,7 @@ router.delete('/event/:id', deleteEvent)
 /*Business*/
 router.post('/business', createBusiness); //adding a business
 router.get('/business', getBusiness); //return all business
+router.get('/business/:id', getBusiness); //return all business
 router.put('/business/:id', updateBusiness); //update a business
 router.delete('/business/:id', deleteBusiness); //delete a business
 
