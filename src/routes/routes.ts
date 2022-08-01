@@ -5,8 +5,10 @@ import { getUsers, updateUser, deleteUser } from '../users/user.controller';
 import { createEvent, getEvents, updateEvent, deleteEvent } from '../events/event.controller';
 import {createEntity, getEntities, updateEntity, deleteEntity, printQR, downloadFile} from '../entities/entity.controller';
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
-import multer from '../config/multer';
 import { createBusiness, deleteBusiness, getBusiness, updateBusiness } from '../business/business.controller';
+import { createProjects, deleteProject, getProjects, updateProject } from '../projects/projects.controller';
+import multer from '../config/multer';
+
 
 
 const router = express.Router();
@@ -51,5 +53,12 @@ router.get('/business', getBusiness); //return all business
 router.get('/business/:id', getBusiness); //return all business
 router.put('/business/:id', updateBusiness); //update a business
 router.delete('/business/:id', deleteBusiness); //delete a business
+
+/*Projects*/
+router.post('/projects', createProjects); //adding a project
+router.get('/projects', getProjects); //return all projects
+router.get('/projects/:id', getProjects); //return all projects
+router.put('/projects/:id', updateProject); //update a project
+router.delete('/projects/:id', deleteProject); //delete a project
 
 export {router as routes}
