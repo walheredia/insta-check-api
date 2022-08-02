@@ -1,5 +1,6 @@
 import { toObjectId } from "../utils/utils";
 import Business from "./business";
+import {projectDB} from "../constants/entities.constants";
 
 export async function create(entity: any){
     return await Business.create(entity);
@@ -11,7 +12,15 @@ export async function get(id?: string) {
         filter._id = toObjectId(id)
     };
     const res = await Business.aggregate([
-        { $match: filter }
+        { $match: filter },
+        {
+            $lookup: {
+                from: projectDB,
+                localField: "_id",
+                foreignField: "business",
+                as: "business"
+            }
+        }
     ]);
     return res;
 }

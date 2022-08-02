@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAll, create, update, deleteOne} from "./event.service"
+import { get, create, update, deleteOne} from "./event.service"
 
 export let createEvent = async(req: Request, res: Response) => {
     try {
@@ -18,14 +18,16 @@ export let createEvent = async(req: Request, res: Response) => {
 }
 
 
-export const getEvents = async (req: Request, res: Response): Promise<Response> => {
+export let getEvents = async(req: Request, res: Response) => {
     try {
-        const docs = await getAll(req.params?.entityId);
-        return res.status(200).send({'data': docs})
-    } catch (error: any) {
+        let id = req.params.id ? req.params.id : undefined;
+        const events = await get(id);
+        return res.status(200).send(events);
+    } catch(error:any){
         return res.status(500).send({error: error.message})
     }
 }
+
 export let updateEvent = async(req: Request, res: Response) => {
     try {
         const event = await update(req.body, req.params.id);
