@@ -17,14 +17,6 @@ export async function get(id?: string) {
         { $match: filter },
         {
             $lookup: {
-                from: documentDB,
-                localField: "_id",
-                foreignField: "entity",
-                as: "documents"
-            }
-        },
-        {
-            $lookup: {
                 from: eventDB,
                 localField: "_id",
                 foreignField: "entity",

@@ -7,10 +7,10 @@ import {getFileS3, uploadS3} from "../aws/s3";
 
 export let createDocument = async(req: Request, res: Response) => {
     try {
-        const { title, description, entity } = req.body;
+        const { title, description, event } = req.body;
         const respS3 = await uploadS3(req.file);
         const newDoc = {
-            entity: entity,
+            event: event,
             title: title,
             description: description,
             document: req.file?.path,
@@ -42,7 +42,7 @@ export let deleteDocument = async (req: Request, res:Response): Promise<Response
 
 export const getDocuments = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const docs = await getAll(req.params?.entityId);
+        const docs = await getAll(req.params?.eventId);
         return res.status(200).send({'data': docs})
     } catch (error: any) {
         return res.status(500).send({error: error.message})

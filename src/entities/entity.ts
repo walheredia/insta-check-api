@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
-import { entityDB } from '../constants/entities.constants'
-
+import { entityDB, projectDB } from '../constants/entities.constants'
+import { iProjects } from '../projects/projects'
 export interface iEntity extends mongoose.Document{
+    project: iProjects['_id'];
     title: string,
     description: string,
     strRandom: string,
@@ -11,6 +12,10 @@ export interface iEntity extends mongoose.Document{
 }
 
 const EntitySchema = new mongoose.Schema({
+    project:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:projectDB,
+    },
     title: {
         type: String,
         required: true

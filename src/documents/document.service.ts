@@ -5,8 +5,8 @@ export async function create(document: any){
     return await Document.create(document);
 }
 
-export async function getAll(entityId:string): Promise<iDocument[]> {
-    return Document.find({entity: toObjectId(entityId)});
+export async function getAll(eventId:string): Promise<iDocument[]> {
+    return Document.find({event: toObjectId(eventId)});
 }
 
 export async function deleteOne(id:string): Promise<any>{

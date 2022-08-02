@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
-import { projectDB } from '../constants/entities.constants'
-
+import { projectDB, businessDB } from '../constants/entities.constants'
+import { iBusiness } from '../business/business'
 export interface iProjects extends mongoose.Document{
+    business: iBusiness['_id'];
     title: string,
     description: string,
     disabled: boolean,
@@ -10,6 +11,10 @@ export interface iProjects extends mongoose.Document{
 }
 
 const ProjectSchema = new mongoose.Schema({
+    business:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:businessDB,
+    },
     title: {
         type: String,
         required: true

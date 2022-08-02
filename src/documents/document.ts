@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import {documentDB, entityDB} from '../constants/entities.constants'
-import {iEntity} from "../entities/entity";
+import {documentDB, eventDB} from '../constants/entities.constants'
+import {iEvent} from "../events/event";
 
 export interface iDocument extends mongoose.Document{
-    entity: iEntity['_id'];
+    event: iEvent['_id'];
     title: string;
     description: string;
     document: string;
@@ -18,9 +18,9 @@ export interface iDocument extends mongoose.Document{
 }
 
 const DocumentSchema = new mongoose.Schema({
-    entity:{
+    event:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:entityDB,
+        ref:eventDB,
     },
     title: {
         type: String,
