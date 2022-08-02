@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Document, { iDocument } from './document';
+import { iDocument } from './document';
 // import fs from 'fs-extra'; //No eliminar
 // import path from 'path'; //No eliminar
 import {create, deleteOne, getAll, getDocumentById} from "./document.service";

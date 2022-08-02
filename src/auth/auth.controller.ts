@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 export const createUser = async (req: Request, res: Response) => {
     try {
         const user: iUser = new User({
+            business: req.body.business,
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,

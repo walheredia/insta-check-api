@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
-import { userDB } from '../constants/users.constants';
+import { userDB, businessDB } from '../constants/entities.constants';
 import bcrypt from 'bcryptjs'
+import { iBusiness } from '../business/business'
 
 export interface iUser extends mongoose.Document{
+    business: iBusiness['_id'];
     username: string;
     email: string;
     password: string;
@@ -14,6 +16,10 @@ export interface iUser extends mongoose.Document{
 }
 
 const UserSchema = new mongoose.Schema({
+    business:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:businessDB,
+    },
     username: {
         type: String,
         required: true,

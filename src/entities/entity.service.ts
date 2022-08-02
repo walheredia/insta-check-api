@@ -1,6 +1,5 @@
 import { toObjectId } from "../utils/utils";
-import Entity, {iEntity} from "./entity";
-import {documentDB} from "../constants/entities.constants";
+import Entity from "./entity";
 import {eventDB} from "../constants/entities.constants";
 import {getPDF} from "../utils/printer.service";
 

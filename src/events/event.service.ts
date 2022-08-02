@@ -1,5 +1,5 @@
 import { toObjectId } from "../utils/utils";
-import Event, {iEvent} from "./event";
+import Event from "./event";
 import {documentDB} from "../constants/entities.constants";
 
 export async function create(event: any){
