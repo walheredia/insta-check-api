@@ -55,10 +55,10 @@ router.put('/business/:id', updateBusiness); //update a business
 router.delete('/business/:id', deleteBusiness); //delete a business
 
 /*Projects*/
-router.post('/projects', createProjects); //adding a project
-router.get('/projects', getProjects); //return all projects
-router.get('/projects/:id', getProjects); //return all projects
-router.put('/projects/:id', updateProject); //update a project
-router.delete('/projects/:id', deleteProject); //delete a project
+router.post('/project', createProjects); //adding a project
+router.get('/project', getProjects); //return all projects
+router.get('/project/:id', getProjects); //return all projects
+router.put('/project/:id', updateProject); //update a project
+router.delete('/project/:id', deleteProject); //delete a project
 
 export {router as routes}
