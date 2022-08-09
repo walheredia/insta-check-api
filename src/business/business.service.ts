@@ -18,7 +18,7 @@ export async function get(id?: string) {
                 from: projectDB,
                 localField: "_id",
                 foreignField: "business",
-                as: "business"
+                as: "projects"
             }
         }
     ]);

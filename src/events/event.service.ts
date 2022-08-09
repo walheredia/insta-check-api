@@ -3,7 +3,8 @@ import Event from "./event";
 import {documentDB} from "../constants/entities.constants";
 
 export async function create(event: any){
-    return await Event.create(event);
+    console.log("event", event)
+    return await Event.create({disabled: false, ...event});
 }
 export async function update(event:any, id:string){
     return await Event.updateOne({_id: toObjectId(id)}, { $set:
@@ -29,6 +30,13 @@ export async function get(id?: string) {
                 as: "documents"
             }
         }
+    ]);
+    return res;
+}
+export async function getList(entity: string) {
+    let filter:any = { disabled: false, entity: toObjectId(entity) };
+    const res = await Event.aggregate([
+        { $match: filter }
     ]);
     return res;
 }

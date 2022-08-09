@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { get, create, update, deleteOne} from "./event.service"
+import { get, getList, create, update, deleteOne} from "./event.service"
 
 export let createEvent = async(req: Request, res: Response) => {
     try {
@@ -20,7 +20,16 @@ export let createEvent = async(req: Request, res: Response) => {
 
 export let getEvents = async(req: Request, res: Response) => {
     try {
-        let id = req.params.id ? req.params.id : undefined;
+        const entity: string = req.query.entity as string;
+        const events = await getList(entity);
+        return res.status(200).send(events);
+    } catch(error:any){
+        return res.status(500).send({error: error.message})
+    }
+}
+export let getEvent = async(req: Request, res: Response) => {
+    try {
+        const id = req.params.id ? req.params.id : undefined;
         const events = await get(id);
         return res.status(200).send(events);
     } catch(error:any){
