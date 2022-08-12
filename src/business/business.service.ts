@@ -1,6 +1,6 @@
 import { toObjectId } from "../utils/utils";
 import Business from "./business";
-import {projectDB} from "../constants/entities.constants";
+import {projectDB, userDB} from "../constants/entities.constants";
 
 export async function create(entity: any){
     return await Business.create(entity);
@@ -19,6 +19,14 @@ export async function get(id?: string) {
                 localField: "_id",
                 foreignField: "business",
                 as: "projects"
+            }
+        },
+        {
+            $lookup: {
+                from: userDB,
+                localField: "_id",
+                foreignField: "business",
+                as: "users"
             }
         }
     ]);
