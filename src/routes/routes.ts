@@ -7,6 +7,7 @@ import {createEntity, getEntities, updateEntity, deleteEntity, printQR, download
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
 import { createBusiness, deleteBusiness, getBusiness, updateBusiness } from '../business/business.controller';
 import { createProjects, deleteProject, getProjects, updateProject } from '../projects/projects.controller';
+import { createFollow, getFollows, deleteFollow } from '../follows/follow.controller';
 import multer from '../config/multer';
 
 
@@ -35,18 +36,23 @@ router.put('/user/:id', updateUser); //update a user, not update password (prote
 router.delete('/user/:id', deleteUser); //logical user deletion
 
 /*Documents*/
-router.post('/document', multer.single('pdfFile'), createDocument);
+router.post('/document', createDocument);
 //router.get('/uploads/:name', downloadDocument);
 router.get('/document/:entityId', getDocuments);
 router.delete('/document/:documentId', deleteDocument)
 router.get('/document/download/:documentId', downloadDocument)
 
 /*Events*/
-router.post('/event', multer.single('pdfFile'), createEvent);
+router.post('/event', createEvent);
 router.put('/event/:id', multer.single('pdfFile'), updateEvent);
 router.get('/event/:id', getEvent);
 router.get('/event/', getEvents);
 router.delete('/event/:id', deleteEvent)
+
+/*Follows*/
+router.post('/follow', createFollow);
+router.get('/follow/', getFollows);
+router.delete('/follow/:id', deleteFollow)
 
 /*Business*/
 router.post('/business', createBusiness); //adding a business
