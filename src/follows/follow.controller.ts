@@ -1,10 +1,19 @@
 import { Request, Response } from 'express';
 import {create, deleteOne, getAll} from "./follow.service"
+import { getByStr } from '../entities/entity.service';
 
 export let createFollow = async(req: Request, res: Response) => {
     try{
-        const follow = await create(req.body);
-        return res.status(200).send(follow)
+        const user: string = req.query.user as string;
+        const qr: string = req.query.qr as string;
+        const entity = await getByStr(qr);
+        const newfollow = {
+            user: user,
+            entity: entity[0]._id
+        }
+        const follow = await create(newfollow);
+        
+        return res.status(200).send(entity)
     } catch(error:any){
         return res.status(500).send({error: error.message})
     }

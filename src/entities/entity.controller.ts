@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {create, deleteOne, downloadQR, get, update} from "./entity.service"
+import {create, deleteOne, downloadQR, get, update, getByStr} from "./entity.service"
 import { createRandomString } from '../utils/utils';
 
 

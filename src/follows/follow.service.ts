@@ -3,6 +3,7 @@ import Follow, {iFollow} from "./follow";
 import { entityDB } from "../constants/entities.constants";
 
 export async function create(follow: any){
+    
     return await Follow.create(follow);
 }
 
