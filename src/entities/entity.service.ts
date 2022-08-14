@@ -25,22 +25,13 @@ export async function get(id?: string) {
     ]);
     return res;
 }
-export async function getByStr(str?: string) {
+
+export async function getByStrRandom(strRandom?: string) {
     let filter:any = { disabled: false };
-    if(str){
-        filter.strRandom = str
+    if(strRandom){
+        filter.strRandom = strRandom
     };
-    const res = await Entity.aggregate([
-        { $match: filter },
-        {
-            $lookup: {
-                from: eventDB,
-                localField: "_id",
-                foreignField: "entity",
-                as: "events"
-            }
-        }
-    ]);
+    const res = await Entity.findOne(filter);
     return res;
 }
 

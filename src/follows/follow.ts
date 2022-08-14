@@ -6,16 +6,19 @@ import { iUser } from '../users/user';
 export interface iFollow extends mongoose.Document{
     entity: iEntity['_id'];
     user: iUser['_id'];
+    disabled: boolean,
+    createdAt: Date,
+    updatedAt: Date,
 }
 
 const FollowSchema = new mongoose.Schema({
     entity:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:entityDB,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: entityDB,
     },
     user: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:userDB,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: userDB,
     },
     disabled: {
         type: Boolean,

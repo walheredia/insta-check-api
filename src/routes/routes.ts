@@ -7,7 +7,7 @@ import {createEntity, getEntities, updateEntity, deleteEntity, printQR, download
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
 import { createBusiness, deleteBusiness, getBusiness, updateBusiness } from '../business/business.controller';
 import { createProjects, deleteProject, getProjects, updateProject } from '../projects/projects.controller';
-import { createFollow, getFollows, deleteFollow } from '../follows/follow.controller';
+import { createFollow, getFollows, deleteFollow, getFollow } from '../follows/follow.controller';
 import multer from '../config/multer';
 
 
@@ -52,6 +52,7 @@ router.delete('/event/:id', deleteEvent)
 /*Follows*/
 router.post('/follow', createFollow);
 router.get('/follow/', getFollows);
+router.get('/follow/:strRandom/:user', getFollow);
 router.delete('/follow/:id', deleteFollow)
 
 /*Business*/
