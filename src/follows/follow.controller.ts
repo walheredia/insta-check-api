@@ -4,8 +4,8 @@ import { getByStrRandom } from '../entities/entity.service';
 
 export let createFollow = async(req: Request, res: Response) => {
     try{
-        const user: string = req.query.user as string;
-        const strRandom: string = req.query.qr as string;
+        const user: string = req.body.user as string;
+        const strRandom: string = req.body.strRandom as string;
         const entity = await getByStrRandom(strRandom);
         if (!entity) {
             return res.status(404).send('entity not found');
