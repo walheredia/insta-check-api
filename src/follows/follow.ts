@@ -33,5 +33,5 @@ const FollowSchema = new mongoose.Schema({
     timestamps: true
 })
 
-export const Follow = mongoose.model<iEntity>(entityDB, FollowSchema)
+export const Follow = mongoose.model<iFollow>(followDB, FollowSchema)
 export default Follow
