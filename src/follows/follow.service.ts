@@ -18,11 +18,17 @@ export async function getAll(user: string) {
         {
             $lookup: {
                 from: entityDB,
-                localField: "_id",
-                foreignField: "entity",
+                localField: "entity",
+                foreignField: "_id",
                 as: "entity"
             }
         }
     ]);
+    return res;
+}
+
+export async function findOne(user: string, strRandom: string) {
+    let filter:any = { disabled: false, user: toObjectId(user), strRandom: strRandom };
+    const res = await Follow.findOne(filter);
     return res;
 }
