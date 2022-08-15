@@ -1,8 +1,10 @@
 import mongoose from 'mongoose'
 import { entityDB, projectDB } from '../constants/entities.constants'
 import { iProjects } from '../projects/projects'
+
 export interface iEntity extends mongoose.Document{
     project: iProjects['_id'];
+    father: iEntity['_id'];
     title: string,
     description: string,
     strRandom: string,
@@ -15,6 +17,10 @@ const EntitySchema = new mongoose.Schema({
     project:{
         type:mongoose.Schema.Types.ObjectId,
         ref:projectDB,
+    },
+    father:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:entityDB,
     },
     title: {
         type: String,
