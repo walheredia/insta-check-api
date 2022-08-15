@@ -54,7 +54,7 @@ export const printQR = async (req: Request, res: Response) => {
     try{
         let id = req.params.id ? req.params.id : undefined;
         let fileName:string = `${createRandomString()}.pdf`;
-        await downloadQR(fileName, id);
+        await downloadQR(fileName, id)
         return res.status(200).send({
             'message': 'file ready to download',
             'fileName': fileName
