@@ -3,7 +3,7 @@ import { jwtValidation } from '../auth/verifyToken';
 import { createUser, logIn, profile } from '../auth/auth.controller';
 import { getUsers, updateUser, deleteUser } from '../users/user.controller';
 import { createEvent, getEvents, getEvent, updateEvent, deleteEvent } from '../events/event.controller';
-import {createEntity, getEntities, updateEntity, deleteEntity, printQR, downloadFile} from '../entities/entity.controller';
+import {createEntity, getEntities, updateEntity, deleteEntity, printQR, downloadFile, getEntityChilds} from '../entities/entity.controller';
 import {createDocument, deleteDocument, getDocuments, downloadDocument} from "../documents/document.controller";
 import { createBusiness, deleteBusiness, getBusiness, updateBusiness } from '../business/business.controller';
 import { createProjects, deleteProject, getProjects, updateProject } from '../projects/projects.controller';
@@ -21,6 +21,7 @@ router.get('/', async(req: Request, res: Response) => {res.send('Insta Check API
 router.post('/entity', createEntity);
 router.get('/entity', getEntities);
 router.get('/entity/:id', getEntities);
+router.get('/entity/:id/childs', getEntityChilds);
 router.put('/entity/:id', updateEntity);
 router.delete('/entity/:id', deleteEntity);
 router.get('/entityQR/:name', downloadFile);

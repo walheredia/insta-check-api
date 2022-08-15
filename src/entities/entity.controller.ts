@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {create, deleteOne, downloadQR, get, getByStrRandom, update} from "./entity.service"
+import {create, deleteOne, downloadQR, get, update, getChilds} from "./entity.service"
 import { createRandomString } from '../utils/utils';
 
 
@@ -17,6 +17,15 @@ export let getEntities = async(req: Request, res: Response) => {
     try {
         let id = req.params.id ? req.params.id : undefined;
         const entities = await get(id);
+        return res.status(200).send(entities);
+    } catch(error:any){
+        return res.status(500).send({error: error.message})
+    }
+}
+export let getEntityChilds = async(req: Request, res: Response) => {
+    try {
+        let id = req.params.id ? req.params.id : undefined;
+        const entities = await getChilds(id);
         return res.status(200).send(entities);
     } catch(error:any){
         return res.status(500).send({error: error.message})

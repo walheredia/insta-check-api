@@ -26,6 +26,25 @@ export async function get(id?: string) {
     return res;
 }
 
+export async function getChilds(id?: string) {
+    let filter:any = { disabled: false };
+    if(id){
+        filter.father = toObjectId(id)
+    };
+    const res = await Entity.aggregate([
+        { $match: filter },
+        {
+            $lookup: {
+                from: eventDB,
+                localField: "_id",
+                foreignField: "entity",
+                as: "events"
+            }
+        }
+    ]);
+    return res;
+}
+
 export async function getByStrRandom(strRandom?: string) {
     let filter:any = { disabled: false };
     if(strRandom){
