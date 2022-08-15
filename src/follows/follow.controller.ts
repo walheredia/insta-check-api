@@ -12,7 +12,8 @@ export let createFollow = async(req: Request, res: Response) => {
         } else {
             const newfollow = {
                 user: user,
-                entity: entity._id
+                entity: entity._id,
+                strRandom: strRandom
             }
             const follow = await create(newfollow);
             return res.status(200).send(follow)
